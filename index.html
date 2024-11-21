@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة تحويل الأنظمة العددية</title>
+    <style>
+        /* ... نفس الأسلوب السابق ... */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #A7BCCE;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #1E7CCE;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>حاسبة تحويل الأنظمة العددية</h1>
+        <input type="text" id="inputNumber" placeholder="أدخل الرقم">
+        <select id="baseFrom">
+            <option value="2">ثنائي</option>
+            <option value="8">ثماني</option>
+            <option value="10">عشري</option>
+            <option value="16">سداسي عشري</option>
+        </select>
+        <select id="baseTo">
+            <option value="2">ثنائي</option>
+            <option value="8">ثماني</option>
+            <option value="10">عشري</option>
+            <option value="16">سداسي عشري</option>
+        </select>
+        <button onclick="convert()">تحويل</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convert() {
+            const inputNumber = document.getElementById('inputNumber').value;
+            const baseFrom = parseInt(document.getElementById('baseFrom').value);
+            const baseTo = parseInt(document.getElementById('baseTo').value);
+
+            // التحقق من صحة الإدخال
+            if (isNaN(inputNumber) || isNaN(baseFrom) || isNaN(baseTo)) {
+                alert("الرجاء إدخال قيم صحيحة.");
+                return;
+            }
+
+            // التحويل
+            try {
+                const result = parseInt(inputNumber, baseFrom).toString(baseTo);
+                document.getElementById('result').textContent = `النتيجة: ${result}`;
+            } catch (error) {
+                alert("حدث خطأ أثناء التحويل. تأكد من صحة الإدخال والقواعد.");
+            }
+        }
+    </script>
+</body>
+</html>
